@@ -96,8 +96,6 @@ namespace Scheduler_MVC.Controllers
             int customer_id = 2180;
             IEnumerable<appointments> result = db.appointments.Where(d => d.appt_client_id == clientid && d.customer_id == customer_id && System.Data.Entity.SqlServer.SqlFunctions.DateDiff("hour", dt, d.appt_date_time) == 0);
             var cnt = db.appointments.Where(d => d.appt_client_id == clientid && d.customer_id == customer_id && System.Data.Entity.SqlServer.SqlFunctions.DateDiff("hour", dt, d.appt_date_time) == 0).ToList().Count();
-            System.Diagnostics.Debug.WriteLine("I am a debug comment in AppointCheck");
-            System.Diagnostics.Debug.WriteLine("I am a debug comment in AppointCheck for hold yet again");
 
 
         }
@@ -162,8 +160,6 @@ namespace Scheduler_MVC.Controllers
             
             
             System.Diagnostics.Debug.WriteLine(query);
-            System.Diagnostics.Debug.WriteLine("I am in the PreProcessAppointmet function .Hello!!");
-            System.Diagnostics.Debug.WriteLine("I am here for debugging. Thats it");
             //IEnumerable<zones> result1 =  db.zones.Select(e => new { e.zip, e.zone, e.zone_client_id }).Where(u => u.zone_client_id=="15").Distinct(new zones.Comparer());
 
 
@@ -331,7 +327,6 @@ namespace Scheduler_MVC.Controllers
         [HttpPost]
         public ActionResult CMSchedule(cmsViewModel model)
         {
-            System.Diagnostics.Debug.WriteLine("This is a debug commment"+model);
             List <community_meeting_schedule> lst = JsonConvert.DeserializeObject<List<community_meeting_schedule>>(model.rows);
             model.lst = lst;
             return View("CMSConfim", model);
@@ -394,7 +389,6 @@ namespace Scheduler_MVC.Controllers
         public JsonResult GetTime(string day,int id,string zone)
         {
             
-            System.Diagnostics.Debug.WriteLine("This is a constant string in the function of get time"+ "day"+day+"id"+id);
             SelectList slots = new SelectList(db.appointment_schedule.Where(d => d.appt_sched_client_id == id && d.day_of_week == day && d.zone == zone).Select(d => d.time));
             return Json(slots, JsonRequestBehavior.AllowGet);
             //return Json(slots);
@@ -417,7 +411,6 @@ namespace Scheduler_MVC.Controllers
 
 
             }
-            System.Diagnostics.Debug.WriteLine("This is a constant string in the function of get time" + "day" + day + "id" + id);
             SelectList slots = new SelectList(db.appointment_schedule.Where(d => d.appt_sched_client_id == id && d.day_of_week == day && d.zone == zone).Select(d => d.time));
             return Json(slots, JsonRequestBehavior.AllowGet);
             //return Json(slots);
@@ -444,8 +437,6 @@ namespace Scheduler_MVC.Controllers
                                                     }
                                                     
                                                     );// date_time, location, address, city, state, capacity, zone });
-            System.Diagnostics.Debug.WriteLine("I am a debug comment in the GetCms()");
-            System.Diagnostics.Debug.WriteLine("T am additionla commnet in GetCms()");
             return Json(meetingLst);
         }
 
@@ -474,8 +465,6 @@ namespace Scheduler_MVC.Controllers
                                                     }
 
                                                     );// date_time, location, address, city, state, capacity, zone });
-            System.Diagnostics.Debug.WriteLine("I am a debug comment in the GetCms()");
-            System.Diagnostics.Debug.WriteLine("T am additionla commnet in GetCms()");
             return Json(meetingLst);
         }
 
@@ -509,10 +498,6 @@ namespace Scheduler_MVC.Controllers
         [HttpPost]
         public ActionResult Details(FormCollection c)
         {
-            System.Diagnostics.Debug.WriteLine("In the Details function with argument FormCollcetion returning ActionResult" +
-                                               "line break 1 for debugging diagnostics " +
-                                               "line break 2 for debugging diagnostics" +
-                                               "line break 3 for debugging diagnostics");
 
 
             return View();
@@ -521,10 +506,6 @@ namespace Scheduler_MVC.Controllers
         [HttpPost]
         public JsonResult Details1(appointments appointments)
         {
-            System.Diagnostics.Debug.WriteLine("In the Details 1 with the appointment object type argument" +
-                                               "line break 1 for debugging diagnostics " +
-                                               "line break 2 for debugging diagnostics" +
-                                               "line break 3 for debugging diagnostics");
 
 
             //return View("Details");
@@ -535,10 +516,6 @@ namespace Scheduler_MVC.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Details2(FormCollection col)
         {
-            System.Diagnostics.Debug.WriteLine("In the Details2 for the formcollection -- chceking what the formcollection has" +
-                                               "line break 1 for debugging diagnostics " +
-                                               "line break 2 for debugging diagnostics" +
-                                               "line break 3 for debugging diagnostics");
             appointments newModel = new appointments() { appt_id = 30338161, appt_client_id = 3, customer_id = 51, appt_type = "Cm", notes = "jhgjhfhfsjfhgsjhgshfgsfshgdhgfjdfgjdhfgdg", appt_zone = "zone1", appt_status = "NEW", appt_date_time = new DateTime(), time_stamp = new DateTime() };
             System.Diagnostics.Debug.WriteLine(col["appt_client_id"] + col["notes"]);
 
@@ -552,10 +529,6 @@ namespace Scheduler_MVC.Controllers
         [HttpPost]
         public JsonResult Details3(FormCollection col)
         {
-            System.Diagnostics.Debug.WriteLine("In the Details3 for the formcollection  function jvdkjdfjd" +
-                                               "line break 1 for debugging diagnostics " +
-                                               "line break 2 for debugging diagnostics" +
-                                               "line break 3 for debugging diagnostics");
             appointments newModel = new appointments() { appt_id = 30338161, appt_client_id = 3, customer_id = 51, appt_type = "Cm", notes = "jhgjhfhfsjfhgsjhgshfgsfshgdhgfjdfgjdhfgdg", appt_zone = "zone1", appt_status = "NEW", appt_date_time = new DateTime(), time_stamp = new DateTime() };
             System.Diagnostics.Debug.WriteLine(col["appt_client_id"] + col["notes"]);
             //Confirm(newModel);
@@ -602,8 +575,6 @@ namespace Scheduler_MVC.Controllers
         [AllowAnonymous]
         public ActionResult Confirm(appointments appointment)
         {
-            System.Diagnostics.Debug.WriteLine("I am in Confirm and this is a comment for debugging");
-            System.Diagnostics.Debug.WriteLine("skhfshfhs".ToString());
             return View("Edit",appointment);
         }
 
@@ -611,8 +582,6 @@ namespace Scheduler_MVC.Controllers
        [HttpPost] 
         public ActionResult Confirm1(appointments appointment,string submit)
         {
-            System.Diagnostics.Debug.WriteLine("I am in Confirm and this is a comment for debugging");
-            System.Diagnostics.Debug.WriteLine("skhfshfhs".ToString());
             //Execute the update query here 
             //db.AsNoTracking().Where
             using (var db1 = new appointmentContext()){
