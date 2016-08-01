@@ -1,0 +1,701 @@
+﻿@model Scheduler_MVC.Models.appointments
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@*
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>appointment</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.appt_client_id, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.appt_client_id, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.appt_client_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.customer_id, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.customer_id, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.customer_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.appt_date_time, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.appt_date_time, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.appt_date_time, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.recording_uri, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.recording_uri, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.recording_uri, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.time_stamp, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.time_stamp, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.time_stamp, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.appt_status, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.appt_status, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.appt_status, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.appt_type, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.appt_type, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.appt_type, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.appt_cm_id, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.appt_cm_id, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.appt_cm_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.appt_zone, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.appt_zone, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.appt_zone, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.agent_name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.agent_name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.agent_name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.notes, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.notes, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.notes, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.h2, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.h2)
+                    @Html.ValidationMessageFor(model => model.h2, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.old_appt_id, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.old_appt_id, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.old_appt_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.released, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.released)
+                    @Html.ValidationMessageFor(model => model.released, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.appt_result, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.appt_result, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.appt_result, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.appt_result_datetime, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.appt_result_datetime, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.appt_result_datetime, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.appt_update_status_date, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.appt_update_status_date, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.appt_update_status_date, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.OldCustomerID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.OldCustomerID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.OldCustomerID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+*@
+
+
+
+
+
+
+
+<h2>Create Appointment</h2>
+
+<div style="width: 100%;  background-color: lavender; margin: 0 auto;align-content: center">
+    @*@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "appt_form" }))*@
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "appt_form", onsubmit = "return myJsFunction()" }))
+     
+       {
+
+        @Html.AntiForgeryToken()
+        <h4 align="center">Appointment</h4>
+        <div class="form-horizontal" style="margin-left: 30%">
+
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.appt_id, new { id = "appt_id" })
+            @*@Html.HiddenFor(model => model.appt_client_id, new { id = "appt_client_id" })*@
+            @*Adding the hidden fields to send client information along with the form*@
+            @Html.HiddenFor(model => model.Client.client_name)
+            @Html.HiddenFor(model => model.Client.AmcatDatabaseName)
+            @Html.HiddenFor(model => model.appt_zone)
+
+
+
+            <div class="form-group input-group-sm">
+                @Html.Label("Select a Client ID", htmlAttributes: new { @class = "control-label col-md-2",id ="client", style = "white-space: nowrap" })
+                <div class="col-md-10">
+                    <select name="@Html.NameFor(m => m.appt_client_id)" id="MyList" ></select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.customer_id, "Enter Customer ID", htmlAttributes: new { @class = "control-label col-md-2", style = "white-space: nowrap" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.customer_id, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.customer_id, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.zipcode, "Enter Zip Code", htmlAttributes: new { @class = "control-label col-md-2", style = "white-space: nowrap" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.zipcode, new { htmlAttributes = new { @class = "form-control",id = "zip" } })
+                    @Html.ValidationMessageFor(model => model.zipcode, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group input-group-sm">
+                @Html.LabelFor(model => model.appt_date_time, "Appointment Date", htmlAttributes: new { @class = "control-label col-md-2", style = "white-space: nowrap", id = "datesfield" })
+                <div class="col-md-10">
+
+
+                    @Html.EditorFor(model => model.appt_date_time, new { htmlAttributes = new { @class = "form-control datetimepicker", id = "datefield" } })
+                    <div id="timeSlots"></div>
+                    @*This will be removed just for testing*@
+                    @*@Html.EditorFor(model => model.appt_date_time, new { htmlAttributes = new { @class = "form-control", id = "postid" } })*@
+                    @*@Html.TextBoxFor(model => model.appt_date_time, new { data_format ='dd/MM/yyyy HH:mm:ss PP' });*@
+
+
+
+                    @Html.ValidationMessageFor(model => model.appt_date_time, "", htmlAttributes: new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.appt_status, "Appointment Status", htmlAttributes: new { @class = "control-label col-md-2", style = "white-space: nowrap" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.appt_status, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.appt_status, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.appt_type, "Appointment Type", htmlAttributes: new { @class = "control-label col-md-2", style = "white-space: nowrap" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.appt_type, new { htmlAttributes = new { @class = "form-control", id = "appttype" } })
+                    @Html.ValidationMessageFor(model => model.appt_type, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            @* Commenting out the available slots,time, recording uri *@
+
+           @* <div class="form-group input-group-sm">
+                @Html.Label("Available slots", htmlAttributes: new { @class = "control-label col-md-2", style = "white-space: nowrap" })
+                <div class="col-md-10">
+                    <select id="MyList"></select>
+                </div>
+            </div>*@
+
+            @*<div class="form-group input-group-sm">
+                @Html.Label("Time", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+
+
+                    @Html.DropDownList("hours", Enumerable.Range(0, 24)
+                    .Select(i => new SelectListItem
+                    {
+                        Value = i.ToString(),
+                        Text = i.ToString()
+                        //Selected = (Model.Hours > 12 ? Model.Hours - 12 : Model.Hours) == i
+
+                    }
+                    ), new { style = "margin:auto" })&nbsp;
+                    @* @Html.TextBoxFor(model => model.appt_date_time, new { data_format ='dd/MM/yyyy HH:mm:ss PP' });*@
+
+                   @* @Html.DropDownList("minutes", Enumerable.Range(0, 60)
+                    .Select(j => new SelectListItem
+                    {
+                        Value = j.ToString(),
+                        Text = j.ToString()
+
+                    }
+                    ), new { style = "margin:auto" })
+                </div>
+            </div>*@
+
+
+
+            @*<div class="form-group">
+                @Html.LabelFor(model => model.recording_uri, "Recording URI", htmlAttributes: new { @class = "control-label col-md-2", style = "white-space: nowrap" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.recording_uri, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.recording_uri, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+
+            @**** Originally Appointment Status and Appointment Type were below here*@
+            @*<div class="form-group" >
+                    @Html.LabelFor(model => model.appt_status, "Appointment Status", htmlAttributes: new { @class = "control-label col-md-2", style = "white-space: nowrap" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.appt_status, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.appt_status, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group" >
+                    @Html.LabelFor(model => model.appt_type, "Appointment Type", htmlAttributes: new { @class = "control-label col-md-2", style = "white-space: nowrap" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.appt_type, new { htmlAttributes = new { @class = "form-control", id = "appttype" } })
+                        @Html.ValidationMessageFor(model => model.appt_type, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
+
+
+
+
+
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.notes, "Notes", htmlAttributes: new { @class = "control-label col-md-2", style = "white-space: nowrap" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.notes, new { htmlAttributes = new { @class = "form-control", id = "notesfield" } })
+                    @Html.ValidationMessageFor(model => model.notes, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.h2, "H2", htmlAttributes: new { @class = "control-label col-md-2", style = "white-space: nowrap" })
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.h2)
+                        @Html.ValidationMessageFor(model => model.h2, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    @* Changing the id of submit button from subClick to subClick1 to prevent deferred post of the form *@
+                    <input type="submit" value="Save" id="subClick" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+
+    @**@
+    <div style="width: 100%;margin-left: 30%">
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+</div>
+<div id="div_for_partial" style="width: 20%;float:left"></div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+
+    <script type="text/javascript" src="~/Scripts/bootstrap.js"></script>
+    <link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />
+    <script type="text/javascript" src="~/Scripts/moment.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootstrap-datetimepicker.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/Trie.js"></script>
+    <script type="text/javascript" src="~/Scripts/parseJsonObject.js"></script>
+    <script typr="tetxt/javascript" src="~/Scripts/jsonToQueryString.js"></script>
+
+
+    @* <link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" type="text/css"/>
+        <link href="@Url.Content("~/Content/bootstrap-datetimepicker.min.css")" rel="stylesheet" type="text/css"/>*@
+
+
+    <script type="text/javascript" src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript">
+
+
+        function convertTime(time) {
+            console.log(time);
+            var hours = Number(time.match(/^(\d+)/)[1]);
+            var minutes = Number(time.match(/:(\d+)/)[1]);
+            var AMPM = time.match(/\s(.*)$/)[1];
+            if (AMPM == "PM" && hours < 12) hours = hours + 12;
+            if (AMPM == "AM" && hours == 12) hours = hours - 12;
+            var sHours = hours.toString();
+            var sMinutes = minutes.toString();
+            if (hours < 10) sHours = "0" + sHours;
+            if (minutes < 10) sMinutes = "0" + sMinutes;
+            return (sHours + ':' + sMinutes + ':' + "00");
+        }
+
+        function doSomething(obj, dt) {
+            //alert("button" + obj);
+            //concatenated date and time 
+            //alert(document.getElementById("datefield").getAttribute("value") + obj.toString());
+            //alert(dt + " " + obj);
+            var time;
+            time = convertTime(obj.toString());
+            //alert("Converted DateTime " + dt + " " + time);
+            var d = new Date(dt + " " + time);
+            console.log("Converted date is : " + d);
+            document.getElementById("datefield").setAttribute("value", d);
+            document.getElementById('datefield').value = d;
+            //printing the formatted date here 
+             console.log("The formatted date is "+(d.getMonth()+1) +"-"+ d.getDate()+"-"+ d.getFullYear()+ " "+ time);
+            //Putting date in yyyy/mm/dd {time}
+            
+             var d1 =  d.getFullYear()+"-"+(d.getMonth()+1) +"-"+ d.getDate()+ " "+ time;
+             document.getElementById("datefield").setAttribute("value",d1);
+             document.getElementById('datefield').value = d1;
+        }
+
+        function myJsFunction() {
+            // your logic to perform the search.
+            var f1=0, f2=0;
+            //alert("Inside chcekValid");
+            if ($("#MyList").val() == 'default') {
+                alert("Select the client id");
+                f1 = 1;
+            }
+            if ($("#timeSlots").val() == "") {
+                alert("Select the time here" + $("#timeSlots").val());
+                f2 = 1;
+                
+            }
+            //$("#appt_form").submit();
+           
+          /*  $("appt_form").submit(function (e) {
+                alert("In submit form");
+                e.preventDefault();
+            });*/
+            //alert(f1 + f2);
+            //alert("$(#MyList).val()" + $("#MyList").val());
+            //document.getElementById('MyList').setAttribute("value", $("#MyList").val());
+            //alert(document.getElementById('MyList').getAttribute("name")+"="+(document.getElementById('MyList').getAttribute("value")));
+             
+            if (f1 == 1 && f2 == 1)
+                    return false;
+            
+        }
+
+
+
+        $(document).ready(function () {
+            //alert("in document.ready");
+            $("#appt_form").on('submit', function (e) {
+                e.preventDefault();
+                alert("using property on");
+            });
+            $("appt_form").submit(function (e) {
+                //alert("In submit form");
+                e.preventDefault(); //prevent default form submit
+                if($("#MyList").val() == 'default')
+                    alert ("Select the client id");
+                if ($("#timeSlots").val() == "")
+                    alert ("Select the date");
+            });
+        });
+
+
+        $(function () {
+
+            $("#appt_form").on('submit', function (e) {
+                e.preventDefault();
+                //alert("using property on");
+            });
+            $("appt_form").submit(function (e) {
+                //alert("In submit form");
+                e.preventDefault(); //prevent default form submit
+                if ($("#MyList").val() == 'default')
+                    alert("Select the client id");
+                if ($("#timeSlots").val() == "")
+                    alert("Select the date");
+            });
+
+            var dateAsObject;
+
+            $.ajax({
+                url: '@Url.Action("GetClients", "appointments")',
+
+                type: 'POST',
+                //data: JSON.stringify({ 'day': day, 'id': 51 }),
+                dataType: 'json',
+                processdata: false,
+                contentType: 'application/json; charset=utf-8',
+                success: function(data) {
+                    //alert(JSON.stringify(data));
+                    var pObj = new parseObject(JSON.stringify(data), "Text");
+                    var lst = pObj.parse();
+                    $('#MyList').empty();
+                    $('#MyList').append($('<option/>')
+                                              .attr('value', 'default')
+                                              .text('select'));
+                    $.each(lst.split(','),
+                        function (index) {
+                            $('#MyList').append($('<option/>')
+                                               .attr('value', lst.split(',')[index])
+                                               .text(lst.split(',')[index]));
+                        });
+
+                },
+                error :function(xhr, ajaxOptions, thrownError){
+
+                }
+            });
+
+
+            $('#MyList')
+                .on('change',
+                    function () {
+                        
+                        //alert("client value is" + $("#MyList").val());
+                    });
+
+
+            jQuery.validator.methods.date = function(value, element) {
+                var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+                if (isChrome) {
+                    var d = new Date();
+                    return this.optional(element) || !/Invalid|NaN/.test(new Date(d.toLocaleDateString(value)));
+                } else {
+                    return this.optional(element) || !/Invalid|NaN/.test(new Date(value));
+                }
+            };
+
+            jQuery('.bootstrap-datetimepicker-widget').attr({keepOpen:true});
+            jQuery('.bootstrap-datetimepicker-widget').datetimepicker('show');
+            jQuery('.datetimepicker').datetimepicker({ format: 'MM/DD/YYYY',inline:true,sideBySide:true,keepOpen:true,debug:true});
+            //$('div.ui-datetimepicker').css({fontSize : '10px'});
+            jQuery('.bootstrap-datetimepicker-widget').css({
+                'display':'inline-block',
+                'width':'40%'
+            });
+
+
+            jQuery('.datetimepicker').on("dp.update",function(e){
+                $('#timeSlots').empty();
+            });
+
+            jQuery('.datetimepicker')
+                .on("dp.change dp.show dp.hide",
+                    function(e) {
+
+                        jQuery('.bootstrap-datetimepicker-widget').css({
+                            'display':'inline-block',
+                            'width':'40%'
+                        });
+                        dateAsObject = moment(e.date).format("YYYY-MM-D");
+                        console.log("Todays date with current time is:"+moment(e.date).format("YYYY-MM-DD"));
+                        console.log("moment format:" +
+                            moment(new Date("Mon Jun 27 2016 00:00:00 GMT-0400"))
+                            .format("YYYY-MM-DD HH:mm Z"));
+
+                        //alert(dateAsObject);
+                        //alert(e.date);
+                        //alert(e.date.toString().substring(0, 3));
+                        var str = e.date.toString().substring(0, 3);
+                        var weekDays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+                        var T = new Trie();
+                        var i;
+
+                        for (i = 0; i < weekDays.length; i++) {
+                            T.insert(weekDays[i]);
+                        }
+                        var day = T.autoComplete(e.date.toString().substring(0, 3))[0];
+                        console.log(day[0]);
+                        
+                        console.log(JSON.stringify({ 'day': day, 'id': 51 }));
+
+                        
+                        //alert($("#MyList").val() == 'default');
+                        if ($("#MyList").val() == 'default') {
+                            alert("Please select the client id");
+                            console.log($('#zip').val());
+                            //alert($("#timeSlots").val());
+                        }
+                        else {
+                            $.ajax({
+                                url: '@Url.Action("GetTime_", "appointments")',
+
+                                type: 'POST',
+                                data: JSON.stringify({ 'day': day, 'id': $("#MyList").val(), 'zip': $('#zip').val() }),
+                                dataType: 'json',
+                                processdata: false,
+                                contentType: 'application/json; charset=utf-8',
+                                success: function (data) {
+                                    //alert(JSON.stringify(data));
+                                    var pObj = new parseObject(JSON.stringify(data), "Text");
+                                    var lst = pObj.parse();
+
+                                    //alert("another alert" + lst.split(","));
+
+                                    //Cascading Buttons code begins
+                                    /*   $('#timeSlots').empty();
+                                       $('#timeSlots').css({'width':'200px','top':'-150px','display':'inline-block','position':'inherit'});
+                                       var  dv = document.getElementById('timeSlots');
+                                       var btns = ['1','2','3','4','5','6','7','8','9'];
+                                       for (var i in btns) {
+                                           var btn = document.createElement('button');
+                                           var txt = document.createTextNode(String(btns[i]));
+    
+                                           btn.appendChild(txt);
+                                           btn.setAttribute('type','button');
+                                           btn.setAttribute('id',String(btns[i]));
+                                           //btn.setAttribute('onclick',doSomething($(this)));
+                                           btn.setAttribute('style','float:left;margin-right:10px;');
+                                           btn.onclick=function(){
+                                               alert(this.id);
+                                               doSomething(this.id);
+                                           };
+                                           alert("Adding button");
+                                           dv.appendChild(btn);
+    
+                                       }
+                                       $('#timeSlots').css({'width':'200px','top':'-150px','display':'inline-block'});*/
+                                    /*function doSomething(){
+                                        alert("button");
+                                    }*/
+
+                                    //Cascading Code ends here s
+                                    
+
+                                    //Adding the lable as a child to the div
+                                    $('#timeSlots').empty();
+                                    $('#timeSlots').css({ 'width': '300px', 'top': '-120px', 'display': 'inline-block', 'position': 'relative' });
+                                    var dv = document.getElementById('timeSlots');
+                                    var inp = document.createElement('label');
+                                    var inpTxt = document.createTextNode("Select time slots");
+                                    inp.appendChild(inpTxt);
+                                    inp.setAttribute('style', 'width:300px;text-align:center;float:left;display:inline-block;');
+                                    dv.appendChild(inp);
+                                    //Code for adding the lable ends
+
+                                    //Iteration begins for the time slots
+
+                                    $.each(lst.split(','),
+                                        function (index) {
+                                            console.log("this.id" + lst.split(',')[index]);
+                                            console.log("this.Name" + lst.split(',')[index]);
+                                            console.log(this.text);
+
+                                            //CASCADING TIME BUTTONS CODE BEGINS
+
+                                            var btn = document.createElement('button');
+                                            var txt = document.createTextNode(String(lst.split(',')[index]));
+
+                                            btn.appendChild(txt);
+                                            btn.setAttribute('type', 'button');
+                                            btn.setAttribute('id', String(lst.split(',')[index]));
+                                            //btn.setAttribute('onclick',doSomething($(this)));
+                                            btn.setAttribute('style', 'float:left;margin-right:10px;width:80px;');
+                                            btn.onclick = function () {
+                                                //alert(this.id);
+                                                document.getElementById('timeSlots').value = this.id;
+                                                //alert($("#timeSlots").val());
+                                                //sending the date and the time picked ot the function for concatenation
+                                                doSomething(this.id, moment(e.date).format("YYYY-MM-DD"));
+                                            };
+                                            //alert("Adding button");
+                                            dv.appendChild(btn);
+                                            //CASCADING TIME BUTTONS CODE ENDS
+
+                                           
+                                        });
+                                    //alert(lst.split(','));
+                                    //alert("success");
+
+                                },
+                                error: function (xhr, ajaxOptions, thrownError) {
+                                    //alert("error");
+                                },
+                                complete: function (x, y) {
+                                    //alert("complete");
+                                }
+                            });
+                            // alert(T.autoComplete(e.date.toString().substring(0, 3)));
+                        }//end of else here 
+                    });// end of datetimepicker block
+    });
+    </script>
+}

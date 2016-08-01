@@ -1,0 +1,154 @@
+﻿@model Scheduler_MVC.Models.valid_clients
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>valid_clients</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.client_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.client_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.valid_client)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.valid_client)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.outbound_hv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.outbound_hv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.inbound_hv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.inbound_hv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.brc_hv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.brc_hv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.outbound_cm)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.outbound_cm)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.inbound_cm)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.inbound_cm)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.brc_cm)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.brc_cm)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.has_cm)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.has_cm)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.schedule_hv_by_zone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.schedule_hv_by_zone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.exclude_hv_during_cm)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.exclude_hv_during_cm)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cm_exclude_duration)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cm_exclude_duration)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.schedule_cm_by_zone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.schedule_cm_by_zone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AmcatDatabaseName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AmcatDatabaseName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.has_hv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.has_hv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.has_hispanic_hv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.has_hispanic_hv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Portal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Portal)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.client_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

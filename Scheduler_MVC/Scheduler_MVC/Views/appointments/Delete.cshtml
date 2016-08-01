@@ -1,0 +1,168 @@
+﻿@model Scheduler_MVC.Models.appointments
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>appointment</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.appt_client_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.appt_client_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.customer_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.customer_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.appt_date_time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.appt_date_time)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.recording_uri)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.recording_uri)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.time_stamp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.time_stamp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.appt_status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.appt_status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.appt_type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.appt_type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.appt_cm_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.appt_cm_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.appt_zone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.appt_zone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.agent_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.agent_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.notes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.h2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.h2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.old_appt_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.old_appt_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.released)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.released)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.appt_result)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.appt_result)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.appt_result_datetime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.appt_result_datetime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.appt_update_status_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.appt_update_status_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OldCustomerID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OldCustomerID)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

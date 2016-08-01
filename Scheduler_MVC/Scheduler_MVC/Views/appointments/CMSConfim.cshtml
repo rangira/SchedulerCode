@@ -1,0 +1,105 @@
+﻿@*@model  IEnumerable<Scheduler_MVC.Models.community_meeting_schedule>*@
+@model  Scheduler_MVC.Models.cmsViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+@*<h2>Details</h2>*@
+
+<div style="background-color:lavender">
+@using (Html.BeginForm("CMSConfim", "appointments", FormMethod.Post))
+
+{
+    <h4 align="center">Scheduled appointment</h4>
+    <hr />
+
+    @Html.HiddenFor(model => model.appt_id, new { id = "appt_id" })
+    @Html.HiddenFor(model => model.appt_client_id, new { id = "appt_client_id" })
+    @Html.HiddenFor(model => model.appt_date_time)
+    @Html.HiddenFor(model => model.appt_status)
+    @Html.HiddenFor(model => model.appt_type)
+    @Html.HiddenFor(model => model.agent_name)
+    @Html.HiddenFor(model => model.appt_cm_id)
+    @Html.HiddenFor(model => model.appt_zone)
+   
+    <table class="table" style="border:black ">
+        <tr>
+            <th>
+                CM ID 
+            </th>
+           
+            <th>
+                Appointment Time
+            </th>
+           
+            <th>
+                Location
+            </th>
+            <th>
+                Address
+            </th>
+            
+        </tr>
+        
+
+            @foreach (var item in Model.lst)
+            {
+                
+                <tr>
+                    <td>
+                        
+                        @Html.DisplayFor(model => item.cm_id)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => item.date_time)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => item.location)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => item.address)
+                    </td>
+                 </tr>
+                
+            }
+         @for (var i = 0; i < Model.lst.Count; i++)
+         {
+                @Html.HiddenFor(m => m.lst[i].cm_id)
+                @Html.HiddenFor(m => m.lst[i].address)
+                @Html.HiddenFor(m => m.lst[i].cm_client_id)
+                @Html.HiddenFor(m => m.lst[i].capacity)
+                @Html.HiddenFor(m => m.lst[i].city)
+                @Html.HiddenFor(m => m.lst[i].date_time)
+                @Html.HiddenFor(m => m.lst[i].cancelled)
+                @Html.HiddenFor(m => m.lst[i].location)
+                @Html.HiddenFor(m => m.lst[i].state)
+                @Html.HiddenFor(m => m.lst[i].zone)
+         }
+
+
+
+
+
+    </table>
+    <div style="text-align:center;">
+        <input type="submit" value="Back" id="backBtn" class="btn btn-default" />
+        <input type="button" value="Submit" id="submitBtn" class="btn btn-default" style="display:inline-block;" />
+    </div>
+
+}
+</div>
+
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval")
+<script>
+    console.log(@Model.lst);
+    console.log("@Model.appt_status");
+</script>
+}
+

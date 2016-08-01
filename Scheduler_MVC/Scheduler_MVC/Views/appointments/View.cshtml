@@ -1,0 +1,30 @@
+﻿
+@model IEnumerable<Scheduler_MVC.Models.zones>
+
+@{
+    ViewBag.Title = "View";
+}
+
+<h2>View</h2>
+
+<div>
+    <h4>zones</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        @foreach (var item in Model)
+        {
+       
+
+        <dd>
+            @Html.DisplayFor(model => item.zip)
+        </dd>
+
+       
+
+        <dd>
+            @Html.DisplayFor(model => item.zone)
+        </dd>
+        }
+    </dl>
+
+</div>

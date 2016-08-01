@@ -1,0 +1,129 @@
+﻿@model IEnumerable<Scheduler_MVC.Models.valid_clients>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.client_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.valid_client)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.outbound_hv)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.inbound_hv)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.brc_hv)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.outbound_cm)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.inbound_cm)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.brc_cm)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.has_cm)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.schedule_hv_by_zone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.exclude_hv_during_cm)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cm_exclude_duration)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.schedule_cm_by_zone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AmcatDatabaseName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.has_hv)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.has_hispanic_hv)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Portal)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.client_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.valid_client)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.outbound_hv)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.inbound_hv)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.brc_hv)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.outbound_cm)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.inbound_cm)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.brc_cm)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.has_cm)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.schedule_hv_by_zone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.exclude_hv_during_cm)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cm_exclude_duration)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.schedule_cm_by_zone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AmcatDatabaseName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.has_hv)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.has_hispanic_hv)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Portal)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.client_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.client_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.client_id })
+        </td>
+    </tr>
+}
+
+</table>

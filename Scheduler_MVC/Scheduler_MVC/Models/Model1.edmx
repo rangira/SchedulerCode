@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="appointmentsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="appointments">
+          <Key>
+            <PropertyRef Name="appt_id" />
+          </Key>
+          <Property Name="appt_client_id" Type="int" Nullable="false" />
+          <Property Name="customer_id" Type="int" Nullable="false" />
+          <Property Name="appt_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="appt_date_time" Type="datetime" Nullable="false" />
+          <Property Name="recording_uri" Type="varchar" MaxLength="200" />
+          <Property Name="time_stamp" Type="datetime" Nullable="false" />
+          <Property Name="appt_status" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="appt_type" Type="char" MaxLength="5" Nullable="false" />
+          <Property Name="appt_cm_id" Type="int" />
+          <Property Name="appt_zone" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="agent_name" Type="varchar" MaxLength="20" />
+          <Property Name="notes" Type="varchar" MaxLength="1000" />
+          <Property Name="h2" Type="bit" />
+          <Property Name="old_appt_id" Type="int" />
+          <Property Name="released" Type="bit" />
+          <Property Name="appt_result" Type="varchar" MaxLength="50" />
+          <Property Name="appt_result_datetime" Type="datetime" />
+          <Property Name="appt_update_status_date" Type="datetime" />
+          <Property Name="OldCustomerID" Type="int" />
+        </EntityType>
+        <EntityContainer Name="appointmentsModelStoreContainer">
+          <EntitySet Name="appointments" EntityType="Self.appointments" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="appointmentsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="appointment">
+          <Key>
+            <PropertyRef Name="appt_id" />
+          </Key>
+          <Property Name="appt_client_id" Type="Int32" Nullable="false" />
+          <Property Name="customer_id" Type="Int32" Nullable="false" />
+          <Property Name="appt_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="appt_date_time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="recording_uri" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="time_stamp" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="appt_status" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="appt_type" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="appt_cm_id" Type="Int32" />
+          <Property Name="appt_zone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="agent_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="notes" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="h2" Type="Boolean" />
+          <Property Name="old_appt_id" Type="Int32" />
+          <Property Name="released" Type="Boolean" />
+          <Property Name="appt_result" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="appt_result_datetime" Type="DateTime" Precision="3" />
+          <Property Name="appt_update_status_date" Type="DateTime" Precision="3" />
+          <Property Name="OldCustomerID" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="appointmentsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="appointments" EntityType="Self.appointment" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="appointmentsModelStoreContainer" CdmEntityContainer="appointmentsEntities">
+          <EntitySetMapping Name="appointments">
+            <EntityTypeMapping TypeName="appointmentsModel.appointment">
+              <MappingFragment StoreEntitySet="appointments">
+                <ScalarProperty Name="appt_client_id" ColumnName="appt_client_id" />
+                <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+                <ScalarProperty Name="appt_id" ColumnName="appt_id" />
+                <ScalarProperty Name="appt_date_time" ColumnName="appt_date_time" />
+                <ScalarProperty Name="recording_uri" ColumnName="recording_uri" />
+                <ScalarProperty Name="time_stamp" ColumnName="time_stamp" />
+                <ScalarProperty Name="appt_status" ColumnName="appt_status" />
+                <ScalarProperty Name="appt_type" ColumnName="appt_type" />
+                <ScalarProperty Name="appt_cm_id" ColumnName="appt_cm_id" />
+                <ScalarProperty Name="appt_zone" ColumnName="appt_zone" />
+                <ScalarProperty Name="agent_name" ColumnName="agent_name" />
+                <ScalarProperty Name="notes" ColumnName="notes" />
+                <ScalarProperty Name="h2" ColumnName="h2" />
+                <ScalarProperty Name="old_appt_id" ColumnName="old_appt_id" />
+                <ScalarProperty Name="released" ColumnName="released" />
+                <ScalarProperty Name="appt_result" ColumnName="appt_result" />
+                <ScalarProperty Name="appt_result_datetime" ColumnName="appt_result_datetime" />
+                <ScalarProperty Name="appt_update_status_date" ColumnName="appt_update_status_date" />
+                <ScalarProperty Name="OldCustomerID" ColumnName="OldCustomerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

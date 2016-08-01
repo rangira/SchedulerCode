@@ -1,0 +1,218 @@
+﻿@using System.Linq
+@model  IEnumerable<Scheduler_MVC.Models.appointments>
+
+@{
+    ViewBag.Title = "Details";
+}
+
+@*<h2>Details</h2>*@
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+<script type="text/javascript">
+
+        function doSomething1() {
+            console.log("inside dosomething");
+            //alert("Blah");
+            var div = document.getElementById('msgInp');
+            //alert("after msgInp");
+            var input = document.createElement("textarea");
+            input.id = "msg";
+            input.setAttribute('style', 'width:100%;text-align:center;margin:0 auto;display:block;readonly=readonly');
+            div.appendChild(input);
+
+            document.getElementById('msg').value = "No Appointment available. Do you want to schedule a new appointment."
+        }
+
+        $(function () {
+
+            /*doSomething1 = function () {
+                console.log("inside dosomething");
+                alert("Blah");
+            },*/
+            console.log("Inside Details Form");
+
+        });
+</script>
+
+
+
+<div style="background-color:lavender;">
+    <h4 align="center">Scheduled appointment</h4>
+    <hr />
+    @if (Model == null)
+    {
+    <script> alert("Model is null"); </script>}
+
+    <table class="table" style="border:black ">
+        <tr>
+            <th>
+                Client ID
+            </th>
+            <th>
+                Customer ID
+            </th>
+            <th>
+                Appointment Time
+            </th>
+
+            <th>
+                Appointment Status
+            </th>
+            <th>
+                Appointment Type
+            </th>
+            <th>
+                Appointment Zone
+            </th>
+            <th>
+                Agent Name
+            </th>
+            <th>
+                Notes
+            </th>
+            <th>
+                H2
+            </th>
+
+
+
+
+
+        </tr>
+
+        @if (Model.Any())
+        {
+
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => item.appt_client_id)
+                </td>
+
+
+
+                <td>
+                    @Html.DisplayFor(model => item.customer_id)
+                </td>
+
+
+                <td>
+                    @Html.DisplayFor(model => item.appt_date_time)
+                </td>
+
+
+
+
+
+
+                <td>
+                    @Html.DisplayFor(model => item.appt_status)
+                </td>
+
+
+
+                <td>
+                    @Html.DisplayFor(model => item.appt_type)
+                </td>
+
+
+
+
+
+                <td>
+                    @Html.DisplayFor(model => item.appt_zone)
+                </td>
+
+
+                <td>
+                    @Html.DisplayFor(model => item.agent_name)
+                </td>
+
+
+
+                <td>
+                    @Html.DisplayFor(model => item.notes)
+                </td>
+
+
+                <td>
+                    @Html.DisplayFor(model => item.h2)
+                </td>
+
+
+
+                <td>
+
+                    @if (item.appt_type.Trim() == "HV")
+                    {
+
+                        @** Orginial Concatenation of Htmlstring.ActionLink*@
+                        @*@Html.ActionLink("Reschedule", "Edit", new {id = item.appt_id}) |
+                            @Html.ActionLink("Cancel", "Cancel", new { id = item.appt_id });*@
+                        @Html.Raw(new HtmlString(Html.ActionLink("Reschedule", "Edit", new { id = item.appt_id }).ToString() + "|" + Html.ActionLink("Cancel", "Cancel", new { id = item.appt_id }).ToString()));
+                    }
+                    @if (item.appt_type.Trim() == "CM")
+                    {
+                        @Html.Raw(new HtmlString(Html.ActionLink("RescheduleCM", "CMSchedule", new { id = item.appt_id }).ToString() + "|" + Html.ActionLink("Cancel", "Cancel", new { id = item.appt_id }).ToString()));
+
+
+                    }
+
+                    <script type="text/javascript">
+                        $(document).ready(
+                        console.log("script in the form"),
+                        doSomething(),
+                        function doSomething() {
+                            //alert("Blah");
+                        }
+
+                        );
+                    </script>
+
+
+
+
+                </td>
+            </tr>
+
+        }
+       }
+
+
+
+    </table>
+
+    @*<textarea id="msg" style="width:100%;text-align:center;margin:0 auto;display:block;" readonly="readonly"></textarea>*@
+    <div id="msgInp"></div>
+
+    @if (!Model.Any())
+    {
+
+        <script type="text/javascript">
+                        console.log("Model is empty");
+                        $(document).ready(
+                        console.log("script in the form"),
+
+                        doSomething = function () {
+                            //alert("Blah");
+                        },
+                        doSomething()
+                       
+
+                        //document.getElementById('msg').value = "No Appointment available.Do you want to schedule a new appointment."
+
+                        );
+                        doSomething1();
+        </script>
+        @Html.ActionLink("Schedule New Appointment", "Create", "appointments", null, new { @style = "text-align:center;margin:0 auto;display:block;" })
+    }
+
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript" src="~/Scripts/bootstrap.js"></script>
+
+}

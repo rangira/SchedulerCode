@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    
+
+</head>
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top" style="background-color:steelblue;">
+
+    <div class="container">
+        <div class="navbar-header" style="color:dodgerblue">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @Html.ActionLink("Bloom Call Center Scheduler", "Index", "Home", new {area = ""}, new {@class = "navbar-brand"})
+
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                <li>@Html.ActionLink("About", "About", "Home")</li>
+                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+            </ul>
+            @Html.Partial("_LoginPartial")
+        </div>
+        <a href="https://www.bloominsuranceagency.com"> <img src="https://bloominsuranceagency.com/wp-content/uploads/2014/05/bloomlogohoriz345_noTagLine_new.jpg" style="margin-bottom: 0px" alt="Bloom Insurance Agency" /></a>
+    </div>
+   
+</div>
+<div class="container body-content">
+    @RenderBody()
+    @*<hr/>*@
+    @* <footer style="width:100%">
+            <p>&copy; Call Center Scheduler</p>
+        </footer>*@
+ <div id="footer-content" style="width: 960px; height: 80px; margin: 0px auto; margin-top: 0px; margin-right: auto; margin-bottom: 0px; margin-left: auto;">
+     <div id="footer-last" style="width: 960px; margin-top: 36px; border-top: 2px solid #4595c8; border-top-width: 2px; border-top-style: solid; border-top-color: rgb(69, 149, 200); float: left; display: block;">
+         <div id="footer-menu" style="width: 500px; margin: 0px; padding: 0px; float: left; display: block;">
+             <ul id="menu-footermenu" class="navigation-footer" style="float: left; width: 543px; margin-right: 9px; margin-left: 9px; padding: 3px; list-style-type: none; display: block;">
+                 <li id="menu-item-1026" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1026" style="float: left; position: relative; z-index: 100; display: list-item; list-style-type: none;margin-right:10px;"><a href="https://bloominsuranceagency.com/">Home</a></li>
+                 <li id="menu-item-1028" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1028" style="float: left; position: relative; z-index: 100; display: list-item; list-style-type: none;margin-right:10px;"><a href="https://www.bloominsuranceagency.com/technology-services/">Technology</a></li>
+                 <li id="menu-item-1029" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1029" style="float: left; z-index: 100; display: list-item; list-style-type: none;margin-right:10px;"><a href="https://www.bloominsuranceagency.com/contact-center/">Contact Center</a></li>
+                 <li id="menu-item-1030" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1030" style="float: left; z-index: 100; display: list-item; list-style-type: none;margin-right:10px;"><a href="https://www.bloominsuranceagency.com/about-us/">About</a></li>
+                 <li id="menu-item-1318" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1318" style="float: left; z-index: 100; display: list-item; list-style-type: none;margin-right:10px;"><a href="https://www.bloominsuranceagency.com/privacy/">Privacy</a></li>
+             </ul>
+         </div>
+         <div id="footer-copyright" style="float: right">
+             Copyright © 2016 Bloom Insurance Agency. All rights reserved
+         </div>
+     </div>
+   </div>
+</div>
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+
+
+@RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,79 @@
+﻿@model  Scheduler_MVC.Models.appointments
+
+@{
+    ViewBag.Title = "Details";
+}
+
+@*<h2>Details</h2>*@
+@* Changes will be made in Confirm.cshtml for Back-button*@
+<div style="width: 960px;   margin-top: 10%; margin-right: auto; margin-bottom: 0px; margin-left: auto;">
+    @using (Html.BeginForm("Confirm1", "appointments", FormMethod.Post, new { id = "confirm_form" , style="background-color:lavender;" }))
+    {
+        <hr/>
+        <h4 align="center">Confirm appointment</h4>
+        @* Sending the appointment id as hidden variable *@
+            @Html.HiddenFor(model => model.appt_id, new { id = "appt_id" })
+            @Html.HiddenFor(model => model.appt_client_id, new { id = "appt_client_id" })
+            @*Adding the hidden fields to send client information along with the form*@
+            @Html.HiddenFor(model => model.Client.client_name)
+            @Html.HiddenFor(model => model.Client.AmcatDatabaseName)
+            @Html.HiddenFor(model => model.appt_zone)
+            @Html.HiddenFor(model => model.customer_id)
+            @Html.HiddenFor(model => model.appt_cm_id)
+            @Html.HiddenFor(model => model.agent_name)
+        <table class="table" style="border:1px solid lightgrey;border-collapse: collapse">
+            @*<thead style="border: 1px solid">Confirm appointment</thead>*@
+            @*<tr>
+                <td align="center" style="border: 1px solid" >@Html.LabelFor(model => model.appt_date_time, "Appointment Date", htmlAttributes: new { @class = "control-label col-md-2", style = "display: inline;white-space: nowrap;float : none;" })</td>
+                <td align="center" style="border: 1px solid" >@Html.TextBoxFor(model => model.appt_date_time, new {  style="float:none;text-align : center;" })</td>
+            </tr>*@
+             <tr>
+                <td align="center" style="border: 1px solid" >@Html.LabelFor(model => model.appt_date_time, "Appointment Date", htmlAttributes: new { @class = "control-label col-md-2", style = "display: inline;white-space: nowrap;float : none;" })</td>
+                <td align="center" style="border: 1px solid" >@Html.EditorFor(model => model.appt_date_time, new { htmlAttributes = new { @readonly = "readonly", style = "float:none;text-align : center;" } })</td>
+            </tr>
+            <tr>
+                <td align="center" style="border: 1px solid">@Html.LabelFor(model => model.h2, "H2", htmlAttributes: new { @class = "control-label col-md-2" , style="float:none;" })</td>
+                <td align="center" style="border: 1px solid">@Html.TextBoxFor(model => model.h2, new { @readonly = "readonly" ,style= "float:none;text-align : center;" })</td>
+            </tr>
+            @*<tr>
+                <td align="center" style="border: 1px solid">@Html.LabelFor(model => model.notes, "Notes", htmlAttributes: new { @class = "control-label col-md-2" , style="float:none;" })</td>
+                <td align="center" style="border: 1px solid">@Html.TextBoxFor(model => model.notes, new { @readonly = "readonly", style = "width:175px;height:100px;float:none;text-align : center;" })</td>
+            </tr>*@
+            @* Added textboxfor for multiline web control TextAreaFor*@
+            <tr>
+                <td align="center" style="border: 1px solid">@Html.LabelFor(model => model.notes, "Notes", htmlAttributes: new { @class = "control-label col-md-2" , style = "float:none;" })</td>
+                <td align="center" style="border: 1px solid">@Html.TextAreaFor(model => model.notes, 3, 4, new { @readonly = "readonly", style = "width:175px;height:100px;float:none;text-align : left;" })</td>
+            </tr>
+            @*<tr>
+                <td align="center" style="border: 1px solid;text-align : center;white-space :nowrap">@Html.LabelFor(model => model.appt_type, "Appointment Type", htmlAttributes: new { @class = "control-label col-md-2" , style="float:none;" })</td>
+                <td align="center" style="border: 1px solid">@Html.TextBoxFor(model => model.appt_type , new { @readonly = "readonly" , style= "float:none;text-align : center;" })</td>
+            </tr>*@
+            <tr>
+                <td align="center" style="border: 1px solid;text-align : center;white-space :nowrap" >@Html.LabelFor(model => model.appt_type, "Appointment Type", htmlAttributes: new { @class = "control-label col-md-2", style="text-align :center;float: none;" })</td>
+                <td align="center" style="border: 1px solid;text-align : center;" >@Html.TextBoxFor(model => model.appt_type, new {  @readonly = "readonly" , style= "float:none;text-align : center;" })</td>
+            </tr>
+
+           @* <tr>
+                <td>@Html.LabelFor(model => model.appt_type, "Appointment Type", htmlAttributes: new { @class = "control-label col-md-2" })</td>
+                <td>@Html.EditorFor(model => model.appt_type, new { disabled = "disabled", @readonly = "readonly" })</td>
+            </tr>*@
+            <tr>
+                <td align="center" valign="middle"><input name="submit" type="submit" value="Back" id="backBtn" class="btn btn-default" /></td>
+                <td align="center" valign="middle"><input name="submit" type="submit" value="Submit" id="submitBtn" class="btn btn-default" /></td>
+            </tr>
+
+        </table>
+    }
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        //$('#backBtn').click(function (e) {
+            var model = @Html.Raw(Json.Encode(Model));
+            console.log(model);
+     // });
+    </script>
+}
+

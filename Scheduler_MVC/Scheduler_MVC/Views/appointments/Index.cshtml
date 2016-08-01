@@ -1,0 +1,135 @@
+﻿@model IEnumerable<Scheduler_MVC.Models.appointments>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.appt_client_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.customer_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.appt_date_time)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.recording_uri)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.time_stamp)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.appt_status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.appt_type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.appt_cm_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.appt_zone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.agent_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.notes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.h2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.old_appt_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.released)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.appt_result)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.appt_result_datetime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.appt_update_status_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OldCustomerID)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.appt_client_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.customer_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.appt_date_time)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.recording_uri)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.time_stamp)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.appt_status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.appt_type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.appt_cm_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.appt_zone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.agent_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.notes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.h2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.old_appt_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.released)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.appt_result)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.appt_result_datetime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.appt_update_status_date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OldCustomerID)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.appt_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.appt_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.appt_id })
+        </td>
+    </tr>
+}
+
+</table>

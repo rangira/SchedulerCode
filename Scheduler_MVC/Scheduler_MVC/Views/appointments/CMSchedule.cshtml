@@ -1,0 +1,309 @@
+﻿@using Scheduler_MVC.Models
+@model Scheduler_MVC.Models.appointments
+
+@{
+    ViewBag.Title = "CMSchedule";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<h2>Edit Appointment</h2>
+
+<div style="width: 100%;  background-color: lavender; margin: 0 auto;align-content: center">
+    @using (Html.BeginForm("CMSchedule", "appointments", FormMethod.Post, new { id = "appt_form" }))
+
+    {
+
+        @Html.AntiForgeryToken()
+        <h4 align="center">CMS Appointment</h4>
+        <div class="form-horizontal" style="margin-left: 30%">
+
+            <hr />
+            @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
+            @Html.HiddenFor(model => model.appt_id, new { id = "appt_id" })
+            @Html.HiddenFor(model => model.appt_client_id, new { id = "appt_client_id" })
+            @* Adding the hidden fields to send client information along with the form*@
+            @*@Html.HiddenFor(model => model.Client.client_name)
+            @Html.HiddenFor(model => model.Client.AmcatDatabaseName)
+            @Html.HiddenFor(model => model.appt_zone)*@
+            <input name="rows" type="hidden" id="tbldata"/>
+
+
+
+
+
+            <div class="form-group input-group-sm">
+                @Html.LabelFor(model => model.appt_date_time, "Appointment Date", htmlAttributes: new { @class = "control-label col-md-2", style = "white-space: nowrap" })
+                <div class="col-md-10">
+
+
+                    @Html.EditorFor(model => model.appt_date_time, new { htmlAttributes = new { @class = "form-control datetimepicker" } })
+                    <div id="timeSlots"></div>
+                    @*This will be removed just for testing*@
+                    @Html.EditorFor(model => model.appt_date_time, new { htmlAttributes = new { @class = "form-control", id = "postid" } })
+                    @* @Html.TextBoxFor(model => model.appt_date_time, new { data_format ='dd/MM/yyyy HH:mm:ss PP' });*@
+
+
+
+                    @Html.ValidationMessageFor(model => model.appt_date_time, "", htmlAttributes: new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.appt_status, "Appointment Status", htmlAttributes: new { @class = "control-label col-md-2", style = "white-space: nowrap" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.appt_status, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.appt_status, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.appt_type, "Appointment Type", htmlAttributes: new { @class = "control-label col-md-2", style = "white-space: nowrap" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.appt_type, new { htmlAttributes = new { @class = "form-control", id = "appttype" } })
+                    @Html.ValidationMessageFor(model => model.appt_type, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+           
+                <table class="table table-striped table-hover table-bordered" style="margin-right:auto;margin-bottom:20px;width:70%;border:solid 1px;" id="tbl">
+                    <thead>
+                        <tr>
+                            <th><input type="checkbox" name="chooseAll" id="chooseAll" /></th>
+                            <th class="center">CMID</th>
+                            <th class="center">CMDateTime</th>
+                            <th class="center">CMLocation</th>
+                            <th class="center">CMAddress</th>
+                            <th class="center">CMCity</th>
+                            <th class="center">CMState</th>
+                            <th class="center">CMCapacity</th>
+                            <th class="center">CMZone</th>
+                            
+                        </tr>
+                    </thead>
+
+                    <tbody id="cmsdata"></tbody>
+                </table>
+           
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    @* Changing the id of submit button from subClick to subClick1 to prevent deferred post of the form *@
+                    <input type="submit" value="Save" id="subClick1" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+
+    @**@
+    <div style="width: 100%;margin-left: 30%">
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+</div>
+
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript" src="~/Scripts/bootstrap.js"></script>
+    <link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />
+    <script type="text/javascript" src="~/Scripts/moment.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootstrap-datetimepicker.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/Trie.js"></script>
+    <script type="text/javascript" src="~/Scripts/parseJsonObject.js"></script>
+    <script>
+
+        console.log("@Model.appt_type");
+        console.log("@Model.appt_date_time");
+        console.log("@Model.time_stamp");
+        console.log("@Model.appt_client_id");
+        console.log("@Model.customer_id");
+        console.log("@Model.notes");
+
+
+
+        function tableToJSON()
+        {
+            var myRows = [];
+            var $headers = $("#tbl th");
+            var $rows = $("#tbl tbody tr").each(function(index) {
+                $cells = $(this).find("td");
+                myRows[index] = {};
+                $cells.each(function(cellIndex) {
+                    myRows[index][$($headers[cellIndex]).html()] = $(this).html();
+                });
+            });
+            var myObj = {};
+            myObj.myrows = myRows;
+            //alert(JSON.stringify(myRows));
+            var rows = [];
+            var rowChecked = [];
+            $('#tbl tbody tr').each(function(i, n){
+                var $row = $(n);
+                rows.push({
+                    id: $row.find('td:eq(0) input[type=checkbox]').prop('checked'),
+                    cm_id: $row.find('td:eq(1)').text(),
+                    date_time: $row.find('td:eq(2)').text(),
+                    location:$row.find('td:eq(3)').text(),
+                    address: $row.find('td:eq(4)').text(),
+
+                });
+            });
+           // alert(JSON.stringify(rows));
+            console.log("rows[0]"+JSON.stringify(rows)[0]);
+            console.log("rows[1]"+JSON.stringify(rows)[1]);
+            for(var i =0;i<rows.length;i++)
+            {
+                if(rows[i]["id"]==true)
+                {
+                    console.log(JSON.stringify(rows[i]));
+                    rowChecked.push(rows[i]);
+                }
+
+
+            }
+            //alert(JSON.stringify(rowChecked));
+
+            //setting the valule of the attribute for tbldata
+            document.getElementById("tbldata").setAttribute("value",JSON.stringify(rowChecked));
+            console.log("The json rows format is"+document.getElementById("tbldata").value);
+        }
+
+        $(function () {
+            var dateAsObject;
+
+            jQuery.validator.methods.date = function (value, element) {
+                var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+                if (isChrome) {
+                    var d = new Date();
+                    return this.optional(element) || !/Invalid|NaN/.test(new Date(d.toLocaleDateString(value)));
+                } else {
+                    return this.optional(element) || !/Invalid|NaN/.test(new Date(value));
+                }
+            };
+
+            jQuery('.bootstrap-datetimepicker-widget').attr({ keepOpen: true });
+            jQuery('.bootstrap-datetimepicker-widget').datetimepicker('show');
+            jQuery('.datetimepicker').datetimepicker({ format: 'MM/DD/YYYY', inline: true, sideBySide: true, keepOpen: true, debug: true });
+            //$('div.ui-datetimepicker').css({fontSize : '10px'});
+            jQuery('.bootstrap-datetimepicker-widget').css({
+                'display': 'inline-block',
+                'width': '40%'
+            });
+
+            jQuery('.datetimepicker')
+                .on("dp.change dp.show dp.hide",
+                    function(e) {
+
+                        jQuery('.bootstrap-datetimepicker-widget').css({
+                            'display':'inline-block',
+                            'width':'40%'
+                        });
+                        dateAsObject = moment(e.date).format("YYYY-MM-D");
+                        /* console.log("moment format:" +
+                             moment(new Date("Mon Jun 27 2016 00:00:00 GMT-0400"))
+                             .format("YYYY-MM-DD HH:mm Z"));*/
+
+                        //alert(dateAsObject);
+                       // alert(e.date);
+                       // alert(e.date.toString().substring(0, 3));
+                        var str = e.date.toString().substring(0, 3);
+                        var weekDays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+                        var T = new Trie();
+                        var i;
+
+                        for (i = 0; i < weekDays.length; i++) {
+                            T.insert(weekDays[i]);
+                        }
+                        var day = T.autoComplete(e.date.toString().substring(0, 3))[0];
+                        console.log(day[0]);
+                        console.log(JSON.stringify({ 'day': day, 'id': @Model.appt_client_id,'date':moment(e.date).format("YYYY-MM-D") }));
+                        $('#cmsdata').empty();
+
+                        $.ajax({
+                            @*original was Action("GetCms", "appointments")',*@
+                            url: '@Url.Action("GetCms_", "appointments")',
+
+                            type: 'POST',
+                              @*data: JSON.stringify({ 'day': day, 'id': @Model.appt_client_id }),*@
+                            data: JSON.stringify({ 'day': day, 'id': @Model.appt_client_id,'date':moment(e.date).format("YYYY-MM-D") }),
+                            dataType: 'json',
+                            processdata: false,
+                            contentType: 'application/json; charset=utf-8',
+                            success: function(data) {
+                                //alert(JSON.stringify(data));
+                                var pObj = new parseObject(JSON.stringify(data), "Text");
+                                var lst = pObj.parse();
+                                //console.log("parse.obj" + pObj.parse());
+                                var row = "";
+                                $.each(data, function(index, item){
+                                    row+="<tr><td><input type='checkbox'id='"+item.CMID+"'/></td><td>"+item.CMID+"</td><td>"+item.CMDateTime+"</td><td>"+item.CMLocation+"</td><td>"+item.CMAddress+"</td><td>"+item.CMCity+"</td><td>"+item.CMState+"</td><td>"+item.CMCapacity+"</td><td>"+item.CMZone+"</td></tr>";
+                                });
+                                $("#cmsdata").html(row);
+                                tableToJSON();
+                                //alert(table);
+                                //alert("another alert" + lst.split(","));
+                            },
+                            error: function(xhr, ajaxOptions, thrownError) {
+                                alert("error");
+                            },
+                            complete: function(x, y) {
+                                alert("complete");
+                            }
+                        });
+                    });
+
+
+
+
+            $('#subClick1').click(function(e){
+                tableToJSON();
+            });
+
+
+
+
+            $("#subClick").click(function(event) {
+                console.log("In form submit");
+                event.preventDefault();
+
+                var rows = [];
+                $('#tbl tbody tr').each(function(i, n){
+                    var $row = $(n);
+                    rows.push({
+                        id: $row.find('td:eq(0) input[type=checkbox]').prop('checked'),
+                        cm_id: $row.find('td:eq(1)').text(),
+                        date_time: $row.find('td:eq(2)').text(),
+                        location:$row.find('td:eq(3)').text(),
+                        address: $row.find('td:eq(4)').text(),
+
+                    });
+                });
+                //alert(JSON.stringify(rows));
+
+                $.ajax({
+                    url: '@Url.Action("CMSchedule","appointments")',
+                    type: 'POST',
+                    data: JSON.stringify(rows),
+                    async:false,
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (result) {
+                        //alert("success");
+                        //$("#appt_form")[0].submit();
+                    },
+                    error: function (request) {
+                        alert("error");
+                    }
+                });
+
+            });
+
+        });
+
+    </script>
+
+}
